@@ -30,7 +30,11 @@ ws:on(
 		if parser.type and parser.type == "RGB" then
 			print(parser.x, parser.y, parser.r, parser.g, parser.b)
 			if parser.x <= 15 and parser.y <= 15 then
-				strip_buffer:set((16 - parser.x) + parser.y * 16, parser.g, parser.r, parser.b)
+				if parser.y % 2 == 0 then
+					strip_buffer:set((16 - parser.x) + parser.y * 16, parser.g, parser.r, parser.b)
+				else
+					strip_buffer:set(parser.x + 1 + parser.y * 16, parser.g, parser.r, parser.b)
+				end
 				ws2812.write(strip_buffer)
 			end
 		end
