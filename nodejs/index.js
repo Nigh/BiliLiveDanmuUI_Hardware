@@ -35,6 +35,7 @@ const cn_num_to_num = (str) => {
 
 // /*
 var ws_connected = false;
+// SETUP: set the port number as you like
 const wss = new Ws.Server({ port: 17342 });
 wss.on('connection', function connection(ws) {
 	ws_connected = ws;
@@ -43,6 +44,7 @@ wss.on('connection', function connection(ws) {
 	});
 });
 
+// SETUP: fill in with your liveroom number
 var room = new Room(866146, 'ws', 2)
 room.connect()
 room.on('authSucceeded', () => {
