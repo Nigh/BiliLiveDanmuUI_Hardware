@@ -6,7 +6,7 @@ const test_str = '#x2y1r1g0b25 #x23y7r12g33b12'
 const test_str2 = '横十纵十二红三绿五蓝〇 横三纵十二红三绿五蓝十'
 
 const rgb_reg = /#[xX](\d+)[yY](\d+)[rR](\d+)[gG](\d+)[bB](\d+)/g
-const rgb_reg_cn = /横(十?[一二三四五六七八九十])纵(十?[一二三四五六七八九十])红([零〇一二三四五六七八九十])绿([零〇一二三四五六七八九十])蓝([零〇一二三四五六七八九十])/g
+const rgb_reg_cn = /横(十?[零〇一二三四五六七八九十])纵(十?[零〇一二三四五六七八九十])红([零〇一二三四五六七八九十])绿([零〇一二三四五六七八九十])蓝([零〇一二三四五六七八九十])/g
 var num_cn_map = new Map([
 	['零', 0],
 	['〇', 0],
@@ -77,6 +77,9 @@ room.on('DANMU_MSG', (message) => {
 			console.log((parser[1]), (parser[2]), (parser[3]), (parser[4]), (parser[5]))
 			let json_str = JSON.stringify({ type: 'RGB', x: cn_num_to_num(parser[1]), y: cn_num_to_num(parser[2]), r: cn_num_to_num(parser[3]) * 10, g: cn_num_to_num(parser[4]) * 10, b: cn_num_to_num(parser[5]) * 10 })
 			console.log("send:", json_str)
+			if (ws_connected != false) {
+				ws_connected.send(json_str);
+			}
 		}
 	}
 	while (parser != null)
