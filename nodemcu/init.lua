@@ -23,6 +23,7 @@ end
 
 print("Connecting to WiFi access point...")
 wifi.setmode(wifi.STATION)
+wifi.sta.autoconnect(1)
 wifi.eventmon.register(wifi.eventmon.STA_GOT_IP, wifi_got_ip_event)
 -- SETUP: fill in with your wifi ssid and password
 wifi.sta.config({ssid = "your wifi SSID", pwd = "your PASSWORD"})
