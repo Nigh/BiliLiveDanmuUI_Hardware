@@ -60,7 +60,7 @@ room.on('DANMU_MSG', (message) => {
 		if (parser != null) {
 			parser.forEach(function (v, i) {
 				if (i >= 3) {
-					out_value[i] = Math.ceil(Number(v) / 2.55)
+					out_value[i] = Math.min(Math.ceil(Number(v) / 2.55), 100)
 				}
 			})
 			// console.log(Number(parser[1]), parser[2], parser[3], parser[4], parser[5])
